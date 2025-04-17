@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 262.1 83.3% 57.8%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 262.1 83.3% 57.8%;
+  }
+
+  /* Dreamy theme */
+  .dreamy {
+    --background: 280 50% 4.9%;
+    --foreground: 280 40% 98%;
+    --card: 280 50% 4.9%;
+    --card-foreground: 280 40% 98%;
+    --popover: 280 50% 4.9%;
+    --popover-foreground: 280 40% 98%;
+    --primary: 280 83.3% 57.8%;
+    --primary-foreground: 280 40% 98%;
+    --secondary: 280 32.6% 17.5%;
+    --secondary-foreground: 280 40% 98%;
+    --muted: 280 32.6% 17.5%;
+    --muted-foreground: 280 20.2% 65.1%;
+    --accent: 280 32.6% 17.5%;
+    --accent-foreground: 280 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 280 40% 98%;
+    --border: 280 32.6% 17.5%;
+    --input: 280 32.6% 17.5%;
+    --ring: 280 83.3% 57.8%;
+  }
+
+  /* Calm theme */
+  .calm {
+    --background: 210 50% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 210 50% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 210 50% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 83.3% 57.8%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 210 32.6% 17.5%;
+    --muted-foreground: 210 20.2% 65.1%;
+    --accent: 210 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 210 32.6% 17.5%;
+    --input: 210 32.6% 17.5%;
+    --ring: 210 83.3% 57.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.noise-texture {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Journal page styling */
+.journal-textarea {
+  @apply w-full h-full p-6 text-lg bg-transparent border-none focus:outline-none focus:ring-0 resize-none;
+  min-height: 50vh;
+}
+
+/* Memory cards styling */
+.memory-card {
+  @apply relative overflow-hidden rounded-xl transition-all duration-500 cursor-pointer;
+  transform-style: preserve-3d;
+}
+
+.memory-card:hover {
+  @apply shadow-lg;
+  transform: translateY(-5px);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
