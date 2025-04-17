@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { useJournal } from "@/components/journal-provider"
+import { useJournalStore } from "@/hooks/useJournal"
 import { useAudio } from "@/components/audio-provider"
 import { useTheme } from "next-themes"
 import {
@@ -39,7 +39,7 @@ export default function JournalPage() {
     editingEntryId,
     setEditingEntryId,
     resetEditor,
-  } = useJournal()
+  } = useJournalStore()
   const { playSound, audioError } = useAudio()
   const [mounted, setMounted] = useState(false)
   const [mood, setMood] = useState("dreamy")

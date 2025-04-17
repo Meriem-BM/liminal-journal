@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
-import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { useJournal } from "@/components/journal-provider"
-import { useAudio } from "@/components/audio-provider"
-import { ChevronLeft, VolumeX } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { useJournalStore } from "@/hooks/useJournal";
+import { useAudio } from "@/components/audio-provider";
+import { ChevronLeft, VolumeX } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const memoryPrompts = [
   {
@@ -74,37 +74,37 @@ const memoryPrompts = [
     color: "from-violet-800 to-purple-900",
     icon: "💭",
   },
-]
+];
 
 export default function MemoriesPage() {
-  const router = useRouter()
-  const { setCurrentPrompt, setCurrentEntry } = useJournal()
-  const { playSound, audioError } = useAudio()
-  const [mounted, setMounted] = useState(false)
+  const router = useRouter();
+  const { setCurrentPrompt, setCurrentEntry } = useJournalStore();
+  const { playSound, audioError } = useAudio();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
+    setMounted(true);
 
     // Only try to play sound if there's no audio error
     if (!audioError) {
-      playSound("ambient")
+      playSound("ambient");
     }
-  }, [playSound, audioError])
+  }, [playSound, audioError]);
 
   const handleSelectPrompt = (prompt: (typeof memoryPrompts)[0]) => {
-    setCurrentPrompt(prompt.prompt)
-    setCurrentEntry("")
-    document.documentElement.className = prompt.mood
+    setCurrentPrompt(prompt.prompt);
+    setCurrentEntry("");
+    document.documentElement.className = prompt.mood;
 
     // Only try to play sound if there's no audio error
     if (!audioError) {
-      playSound(prompt.mood)
+      playSound(prompt.mood);
     }
 
-    router.push("/journal")
-  }
+    router.push("/journal");
+  };
 
-  if (!mounted) return null
+  if (!mounted) return null;
 
   return (
     <div className="min-h-screen w-full overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
@@ -144,7 +144,8 @@ export default function MemoriesPage() {
           <div className="mb-12 text-center">
             <h1 className="text-4xl font-serif text-white mb-4">Memories</h1>
             <p className="text-white/70 max-w-md mx-auto">
-              Select a card to explore a new dimension of your thoughts and feelings.
+              Select a card to explore a new dimension of your thoughts and
+              feelings.
             </p>
           </div>
 
@@ -161,12 +162,14 @@ export default function MemoriesPage() {
                 <div
                   className={cn(
                     "h-60 rounded-xl p-6 flex flex-col justify-between bg-gradient-to-br border border-white/10 shadow-lg",
-                    prompt.color,
+                    prompt.color
                   )}
                 >
                   <div className="text-4xl">{prompt.icon}</div>
                   <div>
-                    <h3 className="text-xl font-serif text-white mb-2">{prompt.title}</h3>
+                    <h3 className="text-xl font-serif text-white mb-2">
+                      {prompt.title}
+                    </h3>
                     <p className="text-white/70 text-sm">{prompt.prompt}</p>
                   </div>
                 </div>
@@ -176,5 +179,5 @@ export default function MemoriesPage() {
         </motion.div>
       </motion.div>
     </div>
-  )
+  );
 }
